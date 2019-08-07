@@ -95,12 +95,12 @@ posts.delete('/:id', (req, res) => {
     const id = req.params.id;
     db.findById(id)
     .then((post) => {
-        if (post.length ===0){
+        if (post.length === 0){
             res.status(404).send({ message: "The post with the specified ID does not exist." })
         } else {
             db.remove(id)
                 .then((data) => {
-                    res.status(200).json(data);
+                    res.status(200).json(post);
                 })
                 .catch((error) => {
                     res.status(500).send({ error: "The post could not be removed" })
